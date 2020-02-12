@@ -3,4 +3,5 @@ phpunit.phar
 .phpunit.result.cache
 /vendor/
 /.idea/
+/app
 
