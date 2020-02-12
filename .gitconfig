@@ -1,0 +1,10 @@
+[gitflow "branch"]
+	master = 0.x
+	develop = 0.x-dev
+[gitflow "prefix"]
+	feature = feature/0.x-dev/
+	bugfix = bugfix/0.x-dev/
+	release = reselase/0.x-dev/
+	hotfix = hotfix/0.x/
+	support = support/0.x/
+	versiontag = v0.0.
