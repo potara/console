@@ -1,0 +1,59 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name ##SERVERNAME##l;
+
+    client_max_body_size 108M;
+
+    # The location of our projects public directory
+    root        /application/public;
+
+    # Point index
+    index       index.php index.htm;
+
+    # Useful logs for debug.
+    access_log off;
+    error_log   /application/storage/log/webserver-error.log;
+
+    rewrite_log on;
+
+    location / {
+        # URLs to attempt, including pretty ones.
+        try_files   $uri $uri/ /index.php?$query_string;
+        autoindex   on;
+    }
+
+    #include  /etc/nginx/error_page.conf;
+
+    # Remove trailing slash to please routing system.
+    #if (!-d $request_filename) {
+    #    rewrite ^/(.+)/$ /$1 permanent;
+    #}
+
+    # PHP FPM configuration.
+    location ~* \.php$ {
+        try_files $uri =404;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        fastcgi_split_path_info ^(.+\.php)(.*)$;
+        include /etc/nginx/fastcgi_params;
+        fastcgi_param PHP_VALUE "error_log=/var/log/nginx/application_php_errors.log";
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    # We don't need .ht files with nginx.
+    location ~ /\.ht {
+        deny all;
+    }
+
+    # Set header expirations on per-project basis
+   #location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+   #       expires max;
+   #       log_not_found off;
+   #}
+
+}

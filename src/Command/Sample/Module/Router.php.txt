@@ -1,0 +1,26 @@
+<?php
+/**
+ * This file is part of the Potara (https://potara.org)
+ *
+ * @see       https://github.com/potara/core
+ * @copyright Copyright (c) 2018-##YEAR## Bruno Lima
+ * @author    Bruno Lima <brunolimame@gmail.com>
+ * @license   https://github.com/potara/core/blob/master/LICENSE (MIT License)
+ */
+
+namespace ##NAMESPACE##\##MODULE##\Router;
+
+
+use ##NAMESPACE##\##MODULE##\Controller\##MODULE##Controller;
+use Potara\Core\RouterInterface;
+use Slim\Routing\RouteCollectorProxy;
+
+class ##MODULE##Router implements RouterInterface
+{
+
+    public function __invoke(RouteCollectorProxy $router)
+    {
+        $##MODULE_LOW##Controller = ##MODULE##Controller::class;
+        $router->get('', [$##MODULE_LOW##Controller, 'index']);
+    }
+}

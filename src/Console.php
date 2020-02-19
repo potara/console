@@ -20,6 +20,7 @@ class Console
         $application = new Application();
 
         $application->add(new PotaraCommand\Init());
+        $application->add(new PotaraCommand\Docker());
 
         return $application->run();
     }
