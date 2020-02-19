@@ -1,0 +1,25 @@
+version: "3.6"
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: potara-webserver
+    ports:
+      - 80:80
+    volumes:
+      - .:/application:rw
+      - ./.docker/nginx/conf:/etc/nginx/conf.d
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - php
+    depends_on:
+      - php
+
+  php:
+    image: brunolimame/php:7.3-fpm
+    container_name: potara-php-fpm
+    working_dir: /application
+    expose:
+      - 9000
+    volumes:
+      - ./:/application:rw
+      - ./.docker/php/php-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini

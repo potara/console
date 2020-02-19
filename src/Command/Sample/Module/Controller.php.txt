@@ -1,0 +1,23 @@
+<?php
+/**
+ * This file is part of the Potara (https://potara.org)
+ *
+ * @see       https://github.com/potara/core
+ * @copyright Copyright (c) 2018-##YEAR## Bruno Lima
+ * @author    Bruno Lima <brunolimame@gmail.com>
+ * @license   https://github.com/potara/core/blob/master/LICENSE (MIT License)
+ */
+
+namespace ##NAMESPACE##\##MODULE##\Controller;
+
+use DI\Container;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
+class ##MODULE##Controller
+{
+    public function index(Request $request, Response $response)
+    {
+        return '##MODULE##';
+    }
+}
