@@ -52,11 +52,7 @@ class Init extends Command
             if (!$createPathProject) {
                 $io->error('Could not create project paw');
                 return 0;
-            } else {
-                $io->success('Project folder created');
             }
-        } else {
-            $io->success('Project folder created');
         }
 
         $io->section('Verifying that the configuration file, ConfigModule.php, has already been created');
@@ -66,11 +62,7 @@ class Init extends Command
             if (!$saveFileConfigModule) {
                 $io->error('Could not create the project configuration file');
                 return 0;
-            } else {
-                $io->success('Main project configuration file was created');
             }
-        } else {
-            $io->success('Project configuration file already created');
         }
 
         $io->success('Project started successfully');
